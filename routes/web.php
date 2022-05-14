@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Livewire\Feed;
+use App\Http\Livewire\PostTweetForm;
+use App\Http\Livewire\Profiles\ShowProfile;
+use App\Http\Livewire\ShowTweets;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +18,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/feed');
 });
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+
+    Route::get('/feed', Feed::class)->name('feed');
+
+    Route::post('/tweets', ShowTweets::class)->name('tweets');
+
+    Route::get('/profiles/{user}', ShowProfile::class)->name('profiles');
+
 });

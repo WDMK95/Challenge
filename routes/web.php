@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Livewire\Feed;
-use App\Http\Livewire\PostTweetForm;
-use App\Http\Livewire\Profiles\ShowProfile;
 use App\Http\Livewire\ShowTweets;
+use App\Http\Livewire\PostTweetForm;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TweetController;
+use App\Http\Livewire\Profiles\ShowProfile;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,6 @@ Route::middleware([
     Route::post('/tweets', ShowTweets::class)->name('tweets');
 
     Route::get('/profiles/{user}', ShowProfile::class)->name('profiles');
-
+    
+    Route::post('/clean', [TweetController::class, 'cleanTweet'])->name('clean');
 });

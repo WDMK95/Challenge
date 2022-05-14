@@ -13,7 +13,7 @@ class ShowTweets extends Component
     public $retweets;
 
     protected $rules = [
-        'body' => ['required', 'min:281'],
+        'body' => ['required', 'max:281'],
     ];
 
     public function updated($body)
